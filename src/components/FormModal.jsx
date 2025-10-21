@@ -11,7 +11,6 @@ export default function FormModal({
   submitText = "Save",
   isLoading = false,
 }) {
-  // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
@@ -33,7 +32,6 @@ export default function FormModal({
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
         <div className="px-6 py-4 border-b flex justify-between items-center">
           <h3 className="text-lg font-semibold">{title}</h3>
           <button
@@ -56,13 +54,11 @@ export default function FormModal({
           </button>
         </div>
 
-        {/* Body */}
         <form onSubmit={onSubmit}>
           <div className="px-6 py-4 max-h-[60vh] overflow-y-auto">
             {children}
           </div>
 
-          {/* Footer */}
           <div className="px-6 py-4 border-t flex justify-end gap-3">
             <button
               type="button"
@@ -84,8 +80,6 @@ export default function FormModal({
     </div>
   );
 }
-
-// Input Field Component untuk digunakan dalam form
 export function FormField({
   label,
   name,
@@ -95,7 +89,7 @@ export function FormField({
   placeholder,
   required = false,
   error,
-  options = [], // untuk select
+  options = [],
 }) {
   return (
     <div className="mb-4">

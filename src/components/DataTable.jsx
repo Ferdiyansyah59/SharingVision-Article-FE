@@ -9,8 +9,6 @@ export default function DataTable({
   onDetail,
   onTrash,
   onStatusUpdate,
-  //   searchPlaceholder = "Search...",
-  //   addButtonText = "Add New",
 
   currentPage,
   totalPages,
@@ -29,7 +27,6 @@ export default function DataTable({
         ADD Data
       </button>
       <div className="bg-white rounded-lg shadow">
-        {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
@@ -50,66 +47,60 @@ export default function DataTable({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {/* DATA SEKARANG SUDAH 'currentItems', jadi 'data' aja */}
               {data.length > 0 ? (
-                data.map(
-                  (
-                    item,
-                    index // Ganti 'currentItems' jadi 'data'
-                  ) => (
-                    <tr key={item.id || index} className="hover:bg-gray-50">
-                      {columns.map((column) => (
-                        <td
-                          key={column.key}
-                          className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
-                        >
-                          {column.render
-                            ? column.render(item[column.key], item)
-                            : item[column.key]}
-                        </td>
-                      ))}
-                      {(onEdit || onDelete || onDetail) && (
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <div className="flex justify-end gap-2">
-                            {onDetail && (
-                              <Link
-                                to={`/detail/${item.Id}`}
-                                className="text-green-500 hover:text-green-900"
-                              >
-                                DetailArticle
-                              </Link>
-                            )}
-                            {onTrash && (
-                              <button
-                                onClick={() => onStatusUpdate(item.Id, "trash")}
-                                className="text-yellow-500 hover:text-yellow-700"
-                                title="Move to Trash"
-                              >
-                                Trash
-                              </button>
-                            )}
-                            {onEdit && (
-                              <button
-                                onClick={() => onEdit(item)}
-                                className="text-indigo-600 hover:text-indigo-900"
-                              >
-                                Edit
-                              </button>
-                            )}
-                            {onDelete && (
-                              <button
-                                onClick={() => onDelete(item.Id)}
-                                className="text-red-600 hover:text-red-900"
-                              >
-                                Delete
-                              </button>
-                            )}
-                          </div>
-                        </td>
-                      )}
-                    </tr>
-                  )
-                )
+                data.map((item, index) => (
+                  <tr key={item.id || index} className="hover:bg-gray-50">
+                    {columns.map((column) => (
+                      <td
+                        key={column.key}
+                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                      >
+                        {column.render
+                          ? column.render(item[column.key], item)
+                          : item[column.key]}
+                      </td>
+                    ))}
+                    {(onEdit || onDelete || onDetail) && (
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex justify-end gap-2">
+                          {onDetail && (
+                            <Link
+                              to={`/detail/${item.Id}`}
+                              className="text-green-500 hover:text-green-900"
+                            >
+                              DetailArticle
+                            </Link>
+                          )}
+                          {onTrash && (
+                            <button
+                              onClick={() => onStatusUpdate(item.Id, "trash")}
+                              className="text-yellow-500 hover:text-yellow-700"
+                              title="Move to Trash"
+                            >
+                              Trash
+                            </button>
+                          )}
+                          {onEdit && (
+                            <button
+                              onClick={() => onEdit(item)}
+                              className="text-indigo-600 hover:text-indigo-900"
+                            >
+                              Edit
+                            </button>
+                          )}
+                          {onDelete && (
+                            <button
+                              onClick={() => onDelete(item.Id)}
+                              className="text-red-600 hover:text-red-900"
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                ))
               ) : (
                 <tr>
                   <td
@@ -124,29 +115,27 @@ export default function DataTable({
           </table>
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="px-6 py-4 border-t">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-700">
-                {/* Gunakan props baru untuk text ini */}
                 Showing {firstItemIndex} to {lastItemIndex} of {totalItems}{" "}
                 results
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => onPageChange(currentPage - 1)} // Panggil props
+                  onClick={() => onPageChange(currentPage - 1)}
                   disabled={currentPage === 1}
                   className="..."
                 >
                   Previous
                 </button>
-                {/* Anda bisa sederhanakan ini jika halamannya terlalu banyak */}
+
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                   (page) => (
                     <button
                       key={page}
-                      onClick={() => onPageChange(page)} // Panggil props
+                      onClick={() => onPageChange(page)}
                       className={`... ${
                         currentPage === page ? "bg-primary text-white" : "..."
                       }`}
@@ -156,7 +145,7 @@ export default function DataTable({
                   )
                 )}
                 <button
-                  onClick={() => onPageChange(currentPage + 1)} // Panggil props
+                  onClick={() => onPageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
                   className="..."
                 >

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  // Menu items berdasarkan role
   const menuItems = [
     { name: "Articles", href: "/", icon: "📝" },
     { name: "Trash", href: "/trash", icon: "🗑️" },
@@ -14,14 +13,12 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <div
         className={`${
           sidebarOpen ? "w-64" : "w-20"
         } bg-white shadow-lg transition-all duration-300 ease-in-out`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo Section */}
           <div className="p-4 border-b">
             <div className="flex items-center justify-between">
               <Link to="/" className="flex items-center">
@@ -60,7 +57,6 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
 
-          {/* Navigation Menu */}
           <nav className="flex-1 p-4">
             <ul className="space-y-2">
               {menuItems.map((item) => {
@@ -81,9 +77,7 @@ export default function DashboardLayout({ children }) {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
         <header className="bg-white shadow-sm">
           <div className="flex items-center justify-between px-6 py-4">
             <button
@@ -107,7 +101,6 @@ export default function DashboardLayout({ children }) {
           </div>
         </header>
 
-        {/* Page Content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
           <div className="container mx-auto px-6 py-8">{children}</div>
         </main>

@@ -43,17 +43,14 @@ const ArticleDashboard = () => {
       setTotalPages(res.data.data.total_pages);
       setTotalItems(res.data.data.total_items);
     } catch (err) {
-      // --- INI BAGIAN YANG DIPERBAIKI ---
       if (err.response && err.response.status === 404) {
-        // Jika 404, JANGAN set error. Anggap aja datanya kosong.
         console.warn("Page not found (404), setting data to empty.");
-        setData([]); // Kosongkan data
-        setTotalPages(1); // Reset pagination
+        setData([]);
+        setTotalPages(1);
         setTotalItems(0);
       } else {
-        // Ini untuk error lain (500, error jaringan, dll)
         console.error("Error found ", err.message);
-        setError(err.message); // Set error HANYA jika bukan 404
+        setError(err.message);
       }
     } finally {
       setLoading(false);
@@ -81,7 +78,7 @@ const ArticleDashboard = () => {
   ];
 
   const handleFormChange = (e) => {
-    const { name, value } = e.target; // Cuma butuh name dan value
+    const { name, value } = e.target;
 
     setFormData((prev) => ({
       ...prev,
@@ -89,7 +86,6 @@ const ArticleDashboard = () => {
     }));
   };
 
-  // Membuka modal untuk 'Add'
   const handleOpenAddModal = () => {
     setEditingItem(null);
     setFormData(initialFormState);
@@ -109,7 +105,6 @@ const ArticleDashboard = () => {
     setIsModalOpen(true);
   };
 
-  // Menutup modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingItem(null);
@@ -264,8 +259,6 @@ const ArticleDashboard = () => {
           submitText={editingItem ? "Update" : "Create"}
           isLoading={isSubmitting}
         >
-          {/* Ini adalah 'children' dari FormModal */}
-
           {formErrors._generic && (
             <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
               {formErrors._generic}

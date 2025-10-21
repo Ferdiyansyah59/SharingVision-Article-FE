@@ -65,7 +65,6 @@ const DetailArticle = () => {
             </span>
           </div>
           <div className="prose max-w-none">
-            {/* Gunakan 'whitespace-pre-wrap' agar format paragraf (enter) tetap ada */}
             <p className="whitespace-pre-wrap">{article.content}</p>
           </div>
         </div>

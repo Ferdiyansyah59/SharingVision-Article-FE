@@ -98,7 +98,6 @@ const Trash = () => {
     setIsModalOpen(true);
   };
 
-  // Menutup modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingItem(null);
@@ -173,7 +172,6 @@ const Trash = () => {
   return (
     <DashboardLayout role="admin">
       <div className="space-y-6">
-        {/* Page Header */}
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Articles Trash</h1>
@@ -204,8 +202,6 @@ const Trash = () => {
           submitText={editingItem ? "Update" : "Create"}
           isLoading={isSubmitting}
         >
-          {/* Ini adalah 'children' dari FormModal */}
-
           {formErrors._generic && (
             <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
               {formErrors._generic}
